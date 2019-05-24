@@ -2,6 +2,7 @@
 
   <head>
     <meta charset="utf-8">
+    <title> Autoencoder </title>
     <link rel="stylesheet" href="./revealjs/css/reveal.css">
     <link rel="stylesheet" href="./revealjs/css/theme/white.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -86,11 +87,11 @@
       <div class="slides">
         
         <!-- first slide -->
-        <section>
+        <section data-background="ae.png">
           <div class="title">
-            <h1>Projeto</h1>
+            <h2> Autoencoder </h2>
              <div class="subtitle">
-               <span > FindJobs </span>
+               <span > </span>
             </div>
           </div>
         </section>
@@ -101,89 +102,173 @@
             <tr>
               <td>
                 <div class="panel">
-                  <p><span class="icons">&#xf2b9; </span>Émerson Silva</p>
-                  <p><span class="icons">&#xf19d; </span>Universidade Federal de Alagoas</p>
-                  <p><span class="icons">&#xf0e0; </span>emersonjose877@gmail.com</p>
-                  <p><span class="icons">&#xf09b; </span> <a href="https://www.github.com/silvaemerson">silvaemerson</a></p>
+                  <p><span class="icons">&#xf2b9; </span> João Vítor do Nascimento </p>
+                  <p><span class="icons">&#xf19d; </span> Universidade Federal de Alagoas </p>
+                  <p><span class="icons">&#xf0e0; </span> joao.vitor@arapiraca.ufal.br </p>
+                  <p><span class="icons">&#xf09b; </span> <a href="https://www.github.com/vitornascimentto"> vitornascimentto </a></p>
                 </div>
               </td>
-
-              <td>
-                <div class="panel">
-                  <p><span class="icons">&#xf2b9; </span> Luís Eduardo G. França</p>
-                  <p><span class="icons">&#xf19d; </span>Universidade Federal de Alagoas</p>
-                  <p><span class="icons">&#xf0e0; </span>luiseduardogfranca@gmail.com</p>
-                  <p><span class="icons">&#xf09b; </span> <a href="https://www.github.com/luiseduardogfranca"> luiseduardogfranca</a></p>
-                </div>
-              </td>
-
-              <td>
-                <div class="panel">
-                  <p><span class="icons">&#xf2b9; </span> João Vítor do Nascimento</p>
-                  <p><span class="icons">&#xf19d; </span>Universidade Federal de Alagoas</p>
-                  <p><span class="icons">&#xf0e0; </span>vitornascimentto0@gmail.com</p>
-                  <p><span class="icons">&#xf09b; </span> <a href="https://github.com/vitornascimentto"> vitornascimentto</a></p>
-                </div>
-              </td>
-
             </tr>
           </table>
 
         </section>
 
-        <!-- introduction -->
+        <section>
+          <h3> Introdução </h3>
+          <div class="blockquote">
+            <ul>
+              <li> Rede Neural </li>
+              <li> Redução de Dimensionalidade </li>
+              <li> Aprender uma representação (Código) </li>
+              <li> Reconstrução </li>
+            </ul>
+          </div>  
+        </section>
+
+        <section>
+          <h3> Duas etapas </h3>
+          <div class="blockquote">
+            <ul> 
+              <li> Compactar dados de entrada </li>
+              <li> Descompactar em algo que corresponda de maneira próxima aos dados originais </li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <img data-src="autoencoders.png" style="border-color: white;">
+        </section>
+
+
+
+        <section>
+          <h3> Codificador e Decodificador </h3>
+
+          <div>
+            <img data-src="1.png" style="border-color: white;">
+          </div>
+          <div>
+            <img data-src="2.png" style="border-color: white;">
+          </div>
+          <div>
+            <img data-src="3.png" style="border-color: white;">
+          </div>
+
+          <div class="blockquote">
+            <p> w -> Matriz de peso; b -> vetor </p>
+          </div>
+        </section>
+
+        <section>  
+          <h3> Denoising autoencoder </h3>
+          <div class="blockquote"> 
+            <ul>
+              <li> Entrada corrompida </li>
+              <li> Recuperar a entrada original sem distorção (Boa representação) </li>
+            </ul>
+          </div>
+        </section>
+
+        <section> 
+          <h3> Treino </h3>
+          <div class="blockquote">
+            <ul>
+              <li>
+                Para cada entrada X 
+                <ul> 
+                  <li> Passe de feed-forward para computar ativações em todas as camadas ocultas </li>  
+                  <li> Em seguida, na camada de saída para obter a saída x' </li>
+                  <li> Desvio de x' da entrada x 
+                    <ul>
+                      <li> Tipicamente usando erro quadrado </li>
+                    </ul>
+                  </li>
+                  <li> Back propagation </li>
+                </ul>   
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- <section>
+          <h3> Variantes de retropropagação </h3>
+          <div class="blockquote">
+            <ul>
+              <li> Método do gradiente conjugado </li>
+              <li> Descida mais acentuada </li>
+            </ul>
+          </div>
+        </section> -->
+
         <section>
           <section>
-            <h2 class="title-slide">Introdução</h2>
+            <h3> Problemas </h3>
           </section>
           
           <section>
-            <div class="box-blockquote fragment fade-up">
-              <h1 class="title-blockquote"> Motivo </h1>
-              <div class="blockquote">
-                </p> Buscamos facilitar a vida de quem está a procura de um emprego, sem a necessidade do usuário sair da comodidade de seu lar. </p>
-              </div>
+            <div class="blockquote">
+              <ul>
+                <li> Reconstruir a média de todos os dados de treinamento (quase sempre) </li>
+                <li> 
+                  Solução 
+                  <ul>
+                    <li> 
+                      Usar pesos iniciais que se aproximam da solução final 
+                      <ul>
+                        <li> Pré-treinamento </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section>
+            <div class="blockquote">  
+              <ul>
+                <li> 
+                  Camadas ocultas maiores que a camada de entrada
+                  <ul>
+                    <li> 
+                      Autoencoder aprende a função identidade 
+                      <ul>
+                        <li> Se torna inútil </li>
+                        <li> Estudos mostram que se aprende em casos como esse </li>
+                      </ul>
+                    </li>
+                  </ul>    
+                </li>
+              </ul>
             </div>
           </section>
         </section>
 
-        <!-- tecnologies used -->
         <section>
+          
           <section>
-            <h2 class="title-slide">Tecnologias utilizadas</h2>
+            <h3> Usos </h3>
           </section>
 
           <section>
-
-            <div class="box-blockquote fragment fade-up">
-              <h1 class="title-blockquote"> Angular </h1>
-              <div class="blockquote">
-                </p>Foi escolhido o Angular como framework de desenvolvimento devido a todo suporte oferecido por ela nos projetos feitos de desenvolvimento web.</p>
-              </div>
-            </div>
-
-            <div class="box-blockquote fragment fade-up">
-                <h1 class="title-blockquote"> Firebase </h1>
-                <div class="blockquote">
-                  </p> Utilizamos o Firebase como framework devido ao tema do Hackathon. </p>
-                </div>
-             </div>
+            <div class="blockquote">
+              A deep learning framework for financial time series using stacked autoencoders and long-short term memory
+            </div>  
           </section>
+
         </section>
 
-        <!-- aproacches and failures -->
-        <section>
-          <section>
-            <h2 class="title-slide"> Firebase </h2>
-            
-            <ul>
-              <li> Firestore </li>
-              <li> Hosting </li>
-              <li> Authentication </li>
-            </ul>
-
-          </section>
-          </section>
+        <section> 
+          <div>
+            Dúvidas?
+          </div>
+          <div>
+            <img data-src="thanks.gif" style="border-color: white;"> 
+          </div>
+          <div>
+            =)
+          </div>
+        </section>
 
         <!-- biography  -->
         <!-- <section>
